@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,33 @@ namespace TECounter
     {
         static void Main(string[] args)
         {
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
+            String text = "";
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+            int count = 0;
+
+            //read all text to a single string
+            text = File.ReadAllText("test.txt");
+            
+            //split at spaces
+            String[] words = text.Split(' ');
+
+            //check each word's last character
+            for (int i = 0; i < words.Length; i++)
+            {
+                Char[] w = words[i].ToCharArray();
+                if (w[w.Length - 1] == 'T' || w[w.Length - 1] == 't')
+                {
+                    count++;
+                }
+
+                if (w[w.Length - 1] == 'E' || w[w.Length - 1] == 'e')
+                {
+                    count++;
+                }
+            }
+
+
+            Console.WriteLine("There are " + count + " words that end in t or e");
         }
     }
 }
